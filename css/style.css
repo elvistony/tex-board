@@ -1,0 +1,96 @@
+
+body {
+    background-image: radial-gradient(lightgray 5%, transparent 1%);
+    /* background-color:bisque; */
+    background-position: 0 0, 40px 40px;
+    background-size:50px 50px;
+  }
+
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+.logo{
+    bottom: 4%;
+    position: fixed;
+    right: 40%;
+    /* left: 50%; */
+    font-size: small;
+    inline-size: fit-content;
+}
+
+button {
+    position: fixed;
+    bottom: 10px;
+    background-color: #ffbc95; /* Green */
+    border: none;
+    color: maroon;
+    border-radius: 20px;
+    padding: 15px 29px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+.item{
+    height: 50px;
+    width: 270px;
+    font-size:30px;
+    touch-action: none;
+    object-fit: contain;
+    position: absolute;
+    text-align: center;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    /* border: 1px solid black; */
+}
+
+.item:hover{
+    border: 2px dotted gray;
+    /* background-color: rgba(0, 132, 172, 0.363); */
+}
+
+.item-select{
+    background-color: rgba(255, 225, 149, 0.548);
+}
+
+.item-noText{
+    background-color: rgba(0, 132, 172, 0.363) !important;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10+ and Edge */
+    user-select: none; /* Standard syntax */
+    -moz-user-select: none;
+}
+
+.resizer {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: brown;
+    z-index: 2;
+}
+
+.resizer.nw{
+    top:-5px;
+    left:-5px;
+    cursor: nw-resize;
+}
+
+.resizer.ne{
+    top:-5px;
+    right:-5px;
+    cursor: ne-resize;
+}
+.resizer.sw{
+    bottom:-5px;
+    left:-5px;
+    cursor: sw-resize;
+}
+.resizer.se{
+    bottom:-5px;
+    right:-5px;
+    cursor: se-resize;
+}

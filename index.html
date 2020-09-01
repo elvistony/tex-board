@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Whiteboard p2p Simple Board Text Board tex board">
+    <meta name="description" content="A Simple Text-Board - P2P">
+    <title>Tex-Board</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<script type="text/javascript" src="js/fittext.js"></script>
+<body>
+    <button id='newtext'>+ TextBox </button>
+    <span class="logo">TEX-BOARD</span>
+    <button style="right:3%;"  onclick="alert('A Text Board App\n\nSingle click = Select/Edit-Text (orange)\nDouble Click = Move/Resize (blue)\n\nShortcuts\nCtrl+b\ttext bold\nCtrl+i\ttext italics')"> Instructions </button>
+    <div id="canvas">
+        <div class="item">
+            <span  contenteditable="true" draggable="false">
+                Hello World!
+            </span>
+            <span>
+                <div class="resizer ne"></div>
+                <div class="resizer nw"></div> 
+                <div class="resizer sw"></div> 
+                <div class="resizer se"></div> 
+            </span> 
+        </div>
+    </div>
+</body>
+<script src="js/elements.js"></script>
+<script src="js/mobile.js"></script>
+</html>
