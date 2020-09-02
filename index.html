@@ -7,26 +7,21 @@
     <meta name="description" content="A Simple Text-Board - P2P">
     <title>Tex-Board</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<script type="text/javascript" src="js/fittext.js"></script>
-<body>
-    <button id='newtext'>+ TextBox </button>
-    <span class="logo">TEX-BOARD</span>
-    <button style="right:3%;"  onclick="alert('A Text Board App\n\nSingle click = Select/Edit-Text (orange)\nDouble Click = Move/Resize (blue)\n\nShortcuts\nCtrl+b\ttext bold\nCtrl+i\ttext italics')"> Instructions </button>
-    <div id="canvas">
-        <div class="item">
-            <span  contenteditable="true" draggable="false">
-                Hello World!
-            </span>
-            <span>
-                <div class="resizer ne"></div>
-                <div class="resizer nw"></div> 
-                <div class="resizer sw"></div> 
-                <div class="resizer se"></div> 
-            </span> 
-        </div>
-    </div>
+<!-- <script type="text/javascript" src="js/fittext.js"></script> -->
+<body class="canvas">
+    
+    <div id="canvas"></div>
+    
+    <span class="nav-bar">
+        <span class="nav-items"><i id='newtext' class="fa fa-header">eading</i></span>
+        <span class="nav-items bt-round" ><i id='newbox' class="fa fa-square"> Box</i></span>
+        <span class="nav-items" ><i id='newcircle' class="fa fa-circle" style="text-decoration: line-through;"> Circle</i></span>
+        <span class="nav-items" style="float: right;"  onclick="alert('A Text Board App\n\nSingle click = Select/Edit-Text (orange)\nDouble Click = Move/Resize (blue)\n\nShortcuts\nCtrl+b\ttext bold\nCtrl+i\ttext italics')">Help</span>
+    </span>
+    <span style="font-size: 8px;right: 10px;position: fixed;" class="nav-items">TEX-BOARD</span>
 </body>
-<script src="js/elements.js"></script>
+<script src="js/element.js"></script>
 <script src="js/mobile.js"></script>
 </html>

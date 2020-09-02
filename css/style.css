@@ -19,6 +19,11 @@ body {
     inline-size: fit-content;
 }
 
+.canvas{
+    touch-action: none;
+}
+
+
 button {
     position: fixed;
     bottom: 10px;
@@ -32,6 +37,54 @@ button {
     display: inline-block;
     font-size: 16px;
   }
+
+.bt-round{
+    /* position: absolute;
+    bottom: -34px;
+    left: -30px; */
+    background-color: lightgray;
+    border: none;
+    color: gray;
+    border-radius: 4px;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: alias;
+    font-size: 15px !important;
+    touch-action: none
+}
+
+.btn-on{
+    background: gray;
+    color: lightgray;
+}
+
+.btn-on-two{
+    background: orange;
+    color: orangered;
+}
+
+.visible-off{
+    display: none;
+}
+
+.zooms{
+    background: none !important;
+    font-size: px;
+}
+
+.bg-red{
+    background-color: palevioletred;
+    color: white;
+}
+
+.item-options{
+    position: absolute;
+    bottom: -35px;
+    left: 0px;
+    inline-size: max-content;
+}
 
 .item{
     height: 50px;
@@ -47,9 +100,50 @@ button {
     /* border: 1px solid black; */
 }
 
+.item-box{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    box-shadow: inset 0px 0px 0px 2px black;
+    object-fit: contain;
+}
+
+.item-circle{
+    border-radius: 50%;
+}
+
+.nav-bar{
+    padding: 5px;
+    background: lightgray;
+    border: 1px solid gray;
+    border-radius: 40px;
+    width: -webkit-fill-available;
+    position: fixed;
+    bottom: 0;
+    height: fit-content;
+    margin: 20px;
+}
+
+.nav-items{
+    padding: 10px;
+    background: lightgray;
+    color: gray;
+    border-radius: 20px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10+ and Edge */
+    user-select: none; /* Standard syntax */
+    -moz-user-select: none;
+}
+.nav-items:hover{
+    
+    color: lightgray;
+    background: gray;
+
+}
+
 .item:hover{
-    border: 2px dotted gray;
-    /* background-color: rgba(0, 132, 172, 0.363); */
+    border: 0.5px dashed gray;
+    /* background-color: rgba(66, 78, 82, 0.363) */
 }
 
 .item-select{
@@ -57,7 +151,7 @@ button {
 }
 
 .item-noText{
-    background-color: rgba(0, 132, 172, 0.363) !important;
+    /* background-color: rgba(0, 132, 172, 0.363) !important; */
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10+ and Edge */
     user-select: none; /* Standard syntax */
