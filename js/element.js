@@ -181,12 +181,19 @@ function nTextBox(e){
     //element.addEventListener('click',selectMe,false)
     element.style.left= e.clientX + "px";
     element.style.top = e.clientY + "px";
+    let a;
     element.addEventListener('mouseover',function(e){
+        clearTimeout(a);
         ToggleOptions(e,this,1);
     },false)
     element.addEventListener('mouseout',function(){
-        ToggleOptions(e,this,0)
-    })
+        ele=this;
+        TimeOutToggle(e,ele)
+    },false)
+
+    function TimeOutToggle(e,ele){
+        a=setTimeout(function(){ ToggleOptions(e,ele,0) },600)
+    }
     canvas.appendChild(element)
     elements.push(element)
     noWindowAction()
