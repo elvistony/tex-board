@@ -219,11 +219,11 @@ function nTextBox(e){
     Click Edit to add Text
 </span>
 <span class="item-options">
-    <i style="cursor:all-scroll;" class="bt-round fa fa-arrows" title="Drag for Reposition |Double Click for Resizing" onclick="MoveMode(this)" onmousedown="Drag(this)"></i>
-    <i class="bt-round fa fa-i-cursor" onclick="EditMode(this)"></i>
-    <i class="bt-round fa fa-trash bg-red" title="Double Click to Delete" onclick="DelMode(this)"></i>
-    <i class="bt-round fa fa-minus-square" onclick="FontReduce(this)"></i>
-    <i class="bt-round fa fa-plus-square" onclick="FontIncrease(this)"></i>
+    <i style="cursor:all-scroll;" class="bt-round no-spawn fa fa-arrows" title="Drag for Reposition |Double Click for Resizing" onclick="MoveMode(this)" onmousedown="Drag(this)"></i>
+    <i class="bt-round no-spawn fa fa-i-cursor" onclick="EditMode(this)"></i>
+    <i class="bt-round no-spawn fa fa-trash bg-red" title="Double Click to Delete" onclick="DelMode(this)"></i>
+    <i class="bt-round no-spawn fa fa-minus-square" onclick="FontReduce(this)"></i>
+    <i class="bt-round no-spawn fa fa-plus-square" onclick="FontIncrease(this)"></i>
 </span>
 <span class="visible-off">
     <div class="resizer ne"></div>
