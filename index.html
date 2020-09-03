@@ -10,15 +10,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <!-- <script type="text/javascript" src="js/fittext.js"></script> -->
-<body class="canvas">
+<body draggable="false" style="">
     
-    <div id="canvas"></div>
+    <div id="canvas" class="canvas" draggable="false"></div>
     
-    <span class="nav-bar">
-        <span class="nav-items"><i id='newtext' class="fa fa-header">eading</i></span>
-        <span class="nav-items bt-round" ><i id='newbox' class="fa fa-square"> Box</i></span>
-        <span class="nav-items" ><i id='newcircle' class="fa fa-circle" style="text-decoration: line-through;"> Circle</i></span>
-        <span class="nav-items" style="float: right;"  onclick="alert('A Text Board App\n\nSingle click = Select/Edit-Text (orange)\nDouble Click = Move/Resize (blue)\n\nShortcuts\nCtrl+b\ttext bold\nCtrl+i\ttext italics')">Help</span>
+    <span class="nav-bar no-spawn">
+        Text:
+        <span class="nav-items no-spawn"><i id='newtext' class="fa fa-header no-spawn"></i></span>
+        <n-sep class="no-spawn"></n-sep>Shapes:
+        <span class="nav-items" ><i id='newbox' class="fa fa-square no-spawn"></i></span>
+        <span class="nav-items" ><i id='newcircle' class="fa fa-circle no-spawn"></i></span>
+        <n-sep class="no-spawn"></n-sep>
+        <span class="nav-items" id='undo'><i class="fa fa-undo no-spawn"></i></span>
+        <span class="nav-items no-spawn" id='clearall' ><i  class="fa fa-close no-spawn"></i> Clear All</span>
+        <span class="nav-items no-spawn"  onclick="alert('A Text Board App\n\nSingle click = Select/Edit-Text (orange)\nDouble Click = Move/Resize (blue)\n\nShortcuts\nCtrl+b\ttext bold\nCtrl+i\ttext italics')">Help</span>
     </span>
     <span style="font-size: 8px;right: 10px;position: fixed;" class="nav-items">TEX-BOARD</span>
 </body>

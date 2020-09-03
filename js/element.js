@@ -4,6 +4,8 @@
 var elements = []
 var btn_newText = document.getElementById('newtext');
 var btn_newBox = document.getElementById('newbox');
+var btn_newCircle = document.getElementById('newcircle');
+var btn_clearall = document.getElementById('clearall')
 
 //Default - On Load
 var editmode=true;
@@ -15,6 +17,9 @@ var el=document.createElement("div");
                 do-nothing
                 on-drawing
                 new-object
+                new-circle
+                new-square
+                new-texbox
 */
 var action='do-nothing';
 var win_status = true;
@@ -30,11 +35,53 @@ function Init(){
     WindowAction(Nothing)
     // Wait for Button Presses
     btn_newText.addEventListener('click',function(){
-        WindowAction(nTextBox)
-    })
+        action='new-text'
+        btn = this.parentElement;
+        if (btn.classList.contains('btn-on')){
+            noWindowAction()
+            btn.classList.remove('btn-on')
+        }else{
+            WindowAction(nTextBox)
+            btn.classList.add('btn-on')
+        }
+    },false)
 
     btn_newBox.addEventListener('click',function(){
-        WindowAction(nBox)
+        action='new-box'
+        var btn=this.parentElement;
+        if (btn.classList.contains('btn-on')){
+            noWindowAction()
+            btn.classList.remove('btn-on')
+        }else{
+            WindowAction(nBoxCircle)
+            btn.classList.add('btn-on')
+        }
+    },false)
+
+    btn_newCircle.addEventListener('click',function(){
+        action='new-circle'
+        var btn=this.parentElement;
+        if (btn.classList.contains('btn-on')){
+            noWindowAction()
+            btn.classList.remove('btn-on')
+        }else{
+            WindowAction(nBoxCircle)
+            btn.classList.add('btn-on')
+        }
+    },false)
+
+    btn_clearall.addEventListener('click',function(){
+        if(confirm('Clear Canvas?')){
+            while (canvas.firstChild) {
+                canvas.removeChild(canvas.firstChild);
+            }
+        }
+    })
+
+    undo.addEventListener('click',function(){
+        if(canvas.firstChild){
+            canvas.removeChild(canvas.lastChild)
+        }
     })
 }
 
@@ -152,15 +199,23 @@ function DelMode(btn_del){
 }
 
 //---------------------------------------NEW OBJECTS
+//last spawn coords
+
+var lastX = 0;
+var lastY = 0;
 
 function nTextBox(e){
     //Event e
-    if(e.target == btn_newText) {
+    e.preventDefault();
+    if(e.target.classList.contains('no-spawn')) {
+        return
+    }
+    if((lastX==e.clientX)&&(lastY==clientY)) {
         return
     }
     var element = document.createElement("div");
     element.innerHTML +=`
-<span  contenteditable="false" style="font-size:30px;">
+<span  contenteditable="false" style="font-size:30px;text-align: left;">
     Click Edit to add Text
 </span>
 <span class="item-options">
@@ -179,6 +234,8 @@ function nTextBox(e){
     `;
     element.classList.add('item','item-noText')
     //element.addEventListener('click',selectMe,false)
+    lastX=e.clientX;
+    lastY=e.clientY;
     element.style.left= e.clientX + "px";
     element.style.top = e.clientY + "px";
     let a;
@@ -196,22 +253,27 @@ function nTextBox(e){
     }
     canvas.appendChild(element)
     elements.push(element)
-    noWindowAction()
+    //noWindowAction()
     InitializeResizers(element)
     el=element;
 }
 
-function nBox(e){
+function nBoxCircle(e){
     //Event e
-    if(e.target == btn_newBox) {
+    e.preventDefault();
+    console.log(e.target);
+    if(e.target.classList.contains('no-spawn')) {
+        return
+    }
+    if((lastX==e.clientX)&&(lastY==clientY)) {
         return
     }
     var element = document.createElement("div");
     element.innerHTML +=`
 <span></span>
 <span class="item-options">
-    <i style="cursor:all-scroll;" class="bt-round fa fa-arrows" title="Drag for Reposition |Double Click for Resizing" onclick="MoveMode(this)" onmousedown="Drag(this)"></i>
-    <i class="bt-round fa fa-trash bg-red" title="Double Click to Delete" onclick="DelMode(this)"></i>
+    <i style="cursor:all-scroll;" class="bt-round no-spawn fa fa-arrows" title="Drag for Reposition |Double Click for Resizing" onclick="MoveMode(this)" onmousedown="Drag(this)"></i>
+    <i class="bt-round fa fa-trash bg-red no-spawn"  title="Double Click to Delete" onclick="DelMode(this)"></i>
 </span>
 <span class="visible-off">
     <div class="resizer ne"></div>
@@ -221,6 +283,11 @@ function nBox(e){
 </span>
     `;
     element.classList.add('item-box')
+    if(action=="new-circle"){
+        element.classList.add('item-circle')
+    }
+    lastX=e.clientX;
+    lastY=e.clientY;
     //element.addEventListener('click',selectMe,false)
     element.style.left= e.clientX + "px";
     element.style.top = e.clientY + "px";
@@ -239,7 +306,33 @@ function nBox(e){
     }
     canvas.appendChild(element)
     elements.push(element)
-    noWindowAction()
+    //noWindowAction()
+    // var evt = new MouseEvent("mousemove", {
+    //     view: window,
+    //     bubbles: true,
+    //     cancelable: true,
+    //     clientX: e.clientX,
+    //     clientY:e.clientY
+    // });
+    // window.dispatchEvent(evt);
+    window.addEventListener('mousemove',mousemoveStart)
+    window.addEventListener('mouseup',mouseup)
+    prevX = e.clientX+50;
+    prevY = e.clientY+50;
+    function mousemoveStart(e){
+        console.log('drawing');
+        const rect = element.getBoundingClientRect();
+        element.style.width = rect.width - (prevX - e.clientX) +'px' ;
+        element.style.height = rect.height - (prevY - e.clientY)+ 'px';
+        prevX = e.clientX;
+        prevY = e.clientY;
+    }
+    function mouseup (e){
+        console.log('finish');
+        window.removeEventListener('mousemove',mousemoveStart);
+        window.removeEventListener('mouseup',mouseup);
+        isResizing=false;
+    }
     InitializeResizers(element)
     el=element;
 }
@@ -287,6 +380,15 @@ function InitializeResizers(el){
                 prevX = e.clientX;
                 prevY = e.clientY;
                 //fitText(el,0.7)
+            }
+
+            function mousemoveStart(e){
+                const rect = el.getBoundingClientRect();
+                el.style.width = rect.width - (prevX - e.clientX) +'px' ;
+                el.style.height = rect.height - (prevY - e.clientY)+ 'px';
+                prevX = e.clientX;
+                prevY = e.clientY;
+
             }
 
             function mouseup (e){
@@ -343,14 +445,15 @@ function Escape(){
 
 function WindowAction(listener){
     if(win_status){
-        window.removeEventListener('click',win_listener);
+        window.removeEventListener('mousedown',win_listener);
     }
-    window.addEventListener('click',listener);
+    window.addEventListener('mousedown',listener);    
+    
     win_listener=listener;
     win_status=true;
 }
 
 function noWindowAction(){
-    window.removeEventListener('click',win_listener);
+    window.removeEventListener('mousedown',win_listener);
     win_status=false;
 }

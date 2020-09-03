@@ -23,6 +23,9 @@ body {
     touch-action: none;
 }
 
+.no-spawn{
+    
+}
 
 button {
     position: fixed;
@@ -56,8 +59,8 @@ button {
 }
 
 .btn-on{
-    background: gray;
-    color: lightgray;
+    background: gray !important;
+    color: lightgray !important;
 }
 
 .btn-on-two{
@@ -113,31 +116,40 @@ button {
 }
 
 .nav-bar{
-    padding: 5px;
+    text-align: center;
+    padding: 10px;
     background: lightgray;
     border: 1px solid gray;
-    border-radius: 40px;
-    width: -webkit-fill-available;
-    position: fixed;
+    border-radius: 10px;
+    width: fit-content;
+    position: absolute;
     bottom: 0;
     height: fit-content;
     margin: 20px;
 }
 
 .nav-items{
-    padding: 10px;
+    padding: 5px;
     background: lightgray;
     color: gray;
-    border-radius: 20px;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10+ and Edge */
-    user-select: none; /* Standard syntax */
+    border:1px solid gray;
+    border-radius: 10px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     -moz-user-select: none;
 }
+
+n-sep{
+    border-left-style: solid;
+    border-color: gray;
+    margin:0px 5px 0px 5px;
+}
+
 .nav-items:hover{
     
-    color: lightgray;
-    background: gray;
+    color: rgb(0, 0, 0);
+    background: rgb(192, 192, 192);
 
 }
 
